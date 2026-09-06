@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daily CF Problem — One Codeforces problem at your rating, every day</title>
+  <meta name="description" content="Sign up with your email and Codeforces rating. Get one curated CP-31 problem per day — every problem sent once before any repeat.">
+  <meta property="og:title" content="Daily CF Problem">
+  <meta property="og:description" content="One Codeforces problem at your rating, emailed every day. 120 problems from the CP-31 sheet, no repeats until full cycle.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="wrap">
+    <header class="brand">
+      <span class="brand-mark">&gt;_</span>
+      <span class="brand-name">daily-cf-problem</span>
+    </header>
+
+    <section class="hero">
+      <h1>One CP-31 problem in your inbox every morning — at your Codeforces rating.</h1>
+      <p class="lede">
+        Pick a rating, enter your email. You get a random problem from that tier each day.
+        Every problem is sent once before any repeat.
+      </p>
+
+      <ul class="trust-bar" aria-label="Service details">
+        <li><strong>120</strong> curated problems</li>
+        <li><strong>10</strong> per rating tier</li>
+        <li>From the <a href="https://www.tle-eliminators.com/cp-sheet" rel="noopener noreferrer" target="_blank">CP-31 sheet</a></li>
+      </ul>
+    </section>
+
+    <aside class="email-preview" aria-label="Sample daily email">
+      <div class="preview-header">
+        <span class="preview-dot"></span>
+        <span class="preview-dot"></span>
+        <span class="preview-dot"></span>
+        <span class="preview-title">Today's CF Problem: Watermelon</span>
+      </div>
+      <div class="preview-body">
+        <p>Today's Codeforces problem for you:</p>
+        <p class="preview-problem">Watermelon <span class="preview-rating" data-r="800">(800)</span></p>
+        <p class="preview-url">codeforces.com/problemset/problem/4/A</p>
+      </div>
+    </aside>
+
+    <form method="POST" action="/signup">
+      <fieldset>
+        <legend>Choose your rating</legend>
+        <div class="ladder">
+          {% for r in ratings %}
+          <div>
+            <input type="radio" name="rating" id="r{{ r }}" value="{{ r }}"
+                   {% if loop.first %}checked{% endif %}>
+            <label class="rung" data-r="{{ r }}" for="r{{ r }}">
+              <span class="num">{{ r }}</span>
+            </label>
+          </div>
+          {% endfor %}
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label for="email">Your email</label>
+        <div class="row">
+          <input type="email" id="email" name="email" required placeholder="you@example.com" autocomplete="email">
+          <button type="submit">Start daily problems</button>
+        </div>
+      </div>
+
+      <p class="hint">
+        Already signed up? Submit the same email with a new rating to switch tiers — no duplicate accounts.
+      </p>
+    </form>
+
+    {% if error %}
+      <p class="error-msg" role="alert">{{ error }}</p>
+    {% endif %}
+
+    <section class="how-it-works" aria-label="How it works">
+      <h2>How it works</h2>
+      <ol class="steps">
+        <li><span class="step-num">1</span> Pick your current Codeforces rating (800–1900)</li>
+        <li><span class="step-num">2</span> Get one problem emailed each day at your chosen send time</li>
+        <li><span class="step-num">3</span> Work through all 10 at your tier before any problem repeats</li>
+      </ol>
+    </section>
+  </div>
+
+  <footer>
+    <p>Problems sourced from the TLE Eliminator CP-31 sheet</p>
+    <p class="footer-meta">&copy; {{ year }} daily-cf-problem</p>
+  </footer>
+</body>
+</html>

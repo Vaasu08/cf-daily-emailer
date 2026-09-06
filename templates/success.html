@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>You're set — Daily CF Problem</title>
+  <meta name="description" content="Your daily Codeforces problem subscription is active.">
+  <meta property="og:title" content="You're set — Daily CF Problem">
+  <meta property="og:description" content="Your first problem goes out with the next daily send.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="wrap">
+    <header class="brand">
+      <span class="brand-mark">&gt;_</span>
+      <span class="brand-name">daily-cf-problem</span>
+    </header>
+
+    <section class="hero hero--compact">
+      <h1>Target set.</h1>
+      <p class="lede">Your first problem goes out with the next daily send.</p>
+    </section>
+
+    <div class="confirm-cards">
+      <div class="confirm-card confirm-card--success">
+        <div class="label">Sending to</div>
+        <div class="value email">{{ email }}</div>
+      </div>
+      <div class="confirm-card confirm-card--rating">
+        <div class="label">Rating</div>
+        <div class="value" data-r="{{ rating }}">{{ rating }}</div>
+      </div>
+    </div>
+
+    <p class="hint">
+      Want a different rating? Go back and submit the same email again — it'll update in place, no duplicate signups.
+    </p>
+
+    <p class="back-wrap">
+      <a class="back" href="/">&larr; Change rating or email</a>
+    </p>
+  </div>
+
+  <footer>
+    <p>Problems sourced from the TLE Eliminator CP-31 sheet</p>
+    <p class="footer-meta">&copy; {{ year }} daily-cf-problem</p>
+  </footer>
+</body>
+</html>
